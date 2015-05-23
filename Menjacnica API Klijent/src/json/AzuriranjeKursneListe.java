@@ -102,7 +102,22 @@ public class AzuriranjeKursneListe {
 
 	}
 	
-	
+	public void azurirajValute(){
+
+		LinkedList<Valuta> valute = ucitajValute();
+		
+		String[] naziviValuta = new String[valute.size()];
+		
+		for (int i = 0; i < valute.size(); i++) {
+			naziviValuta[i] = valute.get(i).getNaziv();
+		}
+		
+		JsonRatesAPIKomunikacija jsonRates = new JsonRatesAPIKomunikacija();
+		
+		LinkedList<Valuta> listaValuta = jsonRates.vratiIznosKurseva(naziviValuta);
+		
+		upisiValute(listaValuta, new GregorianCalendar());
+	}
 		
 		
 		
