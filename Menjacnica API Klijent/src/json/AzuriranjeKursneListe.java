@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.EmptyStackException;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 
@@ -31,6 +32,7 @@ public class AzuriranjeKursneListe {
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			
 			JsonObject jsonObject = gson.fromJson(out, JsonObject.class);
+			
 			JsonArray valutaArrey = jsonObject.get("valute").getAsJsonArray();
 			
 			for (int i = 0; i < valutaArrey.size(); i++) {
@@ -61,6 +63,7 @@ public class AzuriranjeKursneListe {
 			
 			e.printStackTrace();
 		}
+		
 		
 		return valute;
 		
