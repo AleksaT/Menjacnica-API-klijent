@@ -2,7 +2,9 @@ package json;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.GregorianCalendar;
 import java.util.LinkedList;
 
 import com.google.gson.Gson;
@@ -64,6 +66,47 @@ public class AzuriranjeKursneListe {
 		
 	}
 		
+	public void upisiValute (LinkedList<Valuta> valute, GregorianCalendar datum){
 		
+		JsonObject jsonNovi= new JsonObject();
+		JsonArray valuteArray= new JsonArray();
+		
+		for (int i = 0; i < valute.size(); i++) {
+			Valuta v = valute.get(i);
+
+			JsonObject valutaJSON = new JsonObject();
+
+			valutaJSON.addProperty("naziv", v.getNaziv());
+			valutaJSON.addProperty("kurs", v.getKurs());
+
+			valuteArray.add(valutaJSON);
+		}
+
+		String datum1 = datum.get(GregorianCalendar.DAY_OF_MONTH)+ "." + datum.get(GregorianCalendar.MONTH)+1 + "." + datum.get(GregorianCalendar.YEAR);
+
+		jsonNovi.addProperty("datum", datum1);
+		jsonNovi.add("valute", valuteArray);
+
+		try {
+			
+			FileWriter out = new FileWriter(putanjaDoFajlaKursnaLista);
+
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+			out.write(gson.toJson(jsonNovi));
+			
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
+	
+	
+		
+		
+		
+		
+	}	
+	
 
