@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.EmptyStackException;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 
@@ -85,7 +84,7 @@ public class AzuriranjeKursneListe {
 			valuteArray.add(valutaJSON);
 		}
 
-		String datum1 = datum.get(GregorianCalendar.DAY_OF_MONTH)+ "." + datum.get(GregorianCalendar.MONTH)+1 + "." + datum.get(GregorianCalendar.YEAR);
+		String datum1 = datum.get(GregorianCalendar.DAY_OF_MONTH)+ "." + (datum.get(GregorianCalendar.MONTH)+1 )+ "." + datum.get(GregorianCalendar.YEAR);
 
 		jsonNovi.addProperty("datum", datum1);
 		jsonNovi.add("valute", valuteArray);
